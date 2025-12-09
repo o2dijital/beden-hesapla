@@ -5,33 +5,34 @@
 <title>Beden Bul</title>
 
 <style>
-/* ✅ Dış müdahaleleri kilitler */
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  height: auto !important;
   overflow: hidden !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: transparent !important;
 }
 
+/* ✅ Mobil için genişliği sınırladık */
 #o2-size-widget {
-  max-width: 480px;
+  width: 100%;
+  max-width: 360px;            /* ✅ MOBİL İÇİN KRİTİK */
   margin: 0 auto;
   border: 1px solid #eee;
   border-radius: 12px;
-  padding: 14px 14px 10px 14px !important;
+  padding: 12px 12px 10px 12px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,.06);
-  background: white;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 label {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 4px;
 }
 
-/* ✅ TAM SİYAH SLIDER */
+/* ✅ Slider mobil optimize */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -39,59 +40,61 @@ input[type="range"] {
   height: 6px;
   background: #000;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   outline: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: #000;
   border-radius: 50%;
   cursor: pointer;
-  border: none;
 }
 
-/* ✅ BUTON */
+/* ✅ Buton mobil uyum */
 button {
   width: 100%;
-  padding: 12px;
-  background: black;
-  color: white;
+  padding: 10px;
+  background: #000;
+  color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: 600;
+  font-size: 14px;
   margin-top: 6px;
   margin-bottom: 8px !important;
   cursor: pointer;
 }
 
-/* ✅ SONUÇ BAR – BAŞLANGIÇTA TAMAMEN GİZLİ */
+/* ✅ Sonuç bar – taşma tamamen engellendi */
 #result {
-  display: none;        /* 🔴 BAŞTA GÖRÜNMEZ */
+  display: none;
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  height: 44px;
+  height: 40px;
+  width: 100%;
 }
 
 #resultText {
   flex: 1;
-  padding: 10px 12px;
+  padding: 8px 10px;
   background: #eef1f4;
-  font-size: 14px;
+  font-size: 13px;
   color: #444;
   line-height: 1;
+  white-space: nowrap;        /* ✅ Alta düşmeyi bitirir */
 }
 
 #resultBadge {
-  padding: 10px 20px;
-  background: black;
-  color: white;
+  padding: 8px 14px;
+  background: #000;
+  color: #fff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   line-height: 1;
 }
@@ -110,7 +113,6 @@ button {
 
   <button id="btn">Beden Bul</button>
 
-  <!-- ✅ BU ALAN SADECE BUTONA BASINCA GÖRÜNÜR -->
   <div id="result">
     <div id="resultText">Size uygun beden →</div>
     <div id="resultBadge">--</div>
@@ -130,7 +132,7 @@ document.getElementById("btn").addEventListener("click", function () {
   else if (bmi >= 26.5) beden = "4 Beden";
 
   document.getElementById("resultBadge").innerText = beden;
-  document.getElementById("result").style.display = "flex"; // ✅ SADECE BURADA AÇILIYOR
+  document.getElementById("result").style.display = "flex";
 });
 
 document.getElementById("boy").oninput = e => boyVal.innerText = e.target.value;
