@@ -5,7 +5,7 @@
 <title>Beden Bul</title>
 
 <style>
-/* ✅ Dışarıdan gelen tüm padding/scroll müdahalelerini KİLİTLER */
+/* ✅ Dış müdahaleleri kilitler */
 html, body {
   margin: 0 !important;
   padding: 0 !important;
@@ -67,9 +67,9 @@ button {
   cursor: pointer;
 }
 
-/* ✅ SONUÇ BAR – FLEX İLE %100 HİZA - ASLA ALT ALTA DÜŞMEZ */
+/* ✅ SONUÇ BAR – BAŞLANGIÇTA TAMAMEN GİZLİ */
 #result {
-  display: none;
+  display: none;        /* 🔴 BAŞTA GÖRÜNMEZ */
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -108,8 +108,9 @@ button {
   <label>Kilo: <span id="kiloVal">50</span> kg</label>
   <input id="kilo" type="range" min="40" max="120" value="50">
 
-  <button onclick="hesapla()">Beden Bul</button>
+  <button id="btn">Beden Bul</button>
 
+  <!-- ✅ BU ALAN SADECE BUTONA BASINCA GÖRÜNÜR -->
   <div id="result">
     <div id="resultText">Size uygun beden →</div>
     <div id="resultBadge">--</div>
@@ -118,7 +119,7 @@ button {
 </div>
 
 <script>
-function hesapla() {
+document.getElementById("btn").addEventListener("click", function () {
   const boy = document.getElementById("boy").value;
   const kilo = document.getElementById("kilo").value;
   const bmi = kilo / ((boy / 100) ** 2);
@@ -129,8 +130,8 @@ function hesapla() {
   else if (bmi >= 26.5) beden = "4 Beden";
 
   document.getElementById("resultBadge").innerText = beden;
-  document.getElementById("result").style.display = "flex";
-}
+  document.getElementById("result").style.display = "flex"; // ✅ SADECE BURADA AÇILIYOR
+});
 
 document.getElementById("boy").oninput = e => boyVal.innerText = e.target.value;
 document.getElementById("kilo").oninput = e => kiloVal.innerText = e.target.value;
