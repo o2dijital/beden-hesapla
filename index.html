@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Beden Bul</title>
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#o2-size-widget {
+  max-width: 480px;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #000;
+  border-radius: 8px;
+}
+
+input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #000;
+  border-radius: 50%;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#result {
+  margin-top: 12px;
+  display: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#result span {
+  display: inline-block;
+  width: 70%;
+  padding: 10px;
+  background: #eef1f4;
+}
+
+#result b {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  padding: 10px;
+  background: black;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="o2-size-widget">
+
+  <label>Boy: <span id="boyVal">155</span> cm</label>
+  <input id="boy" type="range" min="150" max="200" value="155">
+
+  <label>Kilo: <span id="kiloVal">50</span> kg</label>
+  <input id="kilo" type="range" min="40" max="120" value="50">
+
+  <button onclick="hesapla()">Beden Bul</button>
+
+  <div id="result">
+    <span>Size uygun beden →</span>
+    <b id="beden">--</b>
+  </div>
+
+</div>
+
+<script>
+function hesapla() {
+  const boy = document.getElementById("boy").value;
+  const kilo = document.getElementById("kilo").value;
+  const bmi = kilo / ((boy / 100) ** 2);
+
+  let beden = "1 Beden";
+  if (bmi >= 20.5 && bmi < 23.5) beden = "2 Beden";
+  else if (bmi >= 23.5 && bmi < 26.5) beden = "3 Beden";
+  else if (bmi >= 26.5) beden = "4 Beden";
+
+  document.getElementById("beden").innerText = beden;
+  document.getElementById("result").style.display = "block";
+}
+
+document.getElementById("boy").oninput = e => boyVal.innerText = e.target.value;
+document.getElementById("kilo").oninput = e => kiloVal.innerText = e.target.value;
+</script>
+
+</body>
+</html>
